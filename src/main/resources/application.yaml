@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Excepciones en Java
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3306}/${DATABASE_NAME:pa_excepciones}?createDatabaseIfNotExist=true
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:test123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+api:
+  version: v1
