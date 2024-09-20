@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.exceptions.constant.EntityStatus;
-import com.example.exceptions.constant.marca.CreateMarcaDto;
+import com.example.exceptions.dto.CreateMarcaDto;
 import com.example.exceptions.interfaces.IMarcaService;
 import com.example.exceptions.model.Marca;
 import com.example.exceptions.model.repository.IMarcaRepository;

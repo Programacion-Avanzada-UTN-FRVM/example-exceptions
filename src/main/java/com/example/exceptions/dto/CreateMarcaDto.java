@@ -1,4 +1,4 @@
-package com.example.exceptions.constant.marca;
+package com.example.exceptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
