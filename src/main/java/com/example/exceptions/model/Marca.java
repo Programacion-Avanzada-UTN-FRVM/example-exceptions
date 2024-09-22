@@ -15,6 +15,11 @@ import lombok.Data;
 @Table(name = "marcas")
 @Data
 public class Marca {
+    public enum TipoMarca {
+        IMPORTANTE,
+        NORMAL
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
@@ -35,6 +40,12 @@ public class Marca {
      * Descripción de la marca.
      */
     private String descripcion;
+
+    @Column(nullable = true)
+    /**
+     * El tipo de importancia de la marca.
+     */
+    private TipoMarca tipo = TipoMarca.NORMAL;
 
     @Column(nullable = false)
     /**

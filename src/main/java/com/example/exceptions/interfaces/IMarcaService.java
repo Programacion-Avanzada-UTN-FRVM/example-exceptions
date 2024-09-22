@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.example.exceptions.dto.marca.CreateMarcaDto;
-import com.example.exceptions.model.Marca;
+import com.example.exceptions.dto.marca.MarcaDto;
 
 public interface IMarcaService {
     /**
@@ -13,7 +13,7 @@ public interface IMarcaService {
      *
      * @return
      */
-    public ResponseEntity<List<Marca>> obtenerMarcas();
+    public ResponseEntity<List<MarcaDto>> obtenerMarcas();
 
     /**
      * Obtiene una marca por su identificador.
@@ -22,7 +22,7 @@ public interface IMarcaService {
      *
      * @return La Marca encontrada, si hubo éxito
      */
-    public ResponseEntity<Marca> obtenerMarca(Long id);
+    public ResponseEntity<MarcaDto> obtenerMarca(Long id);
 
     /**
      * Crea una nueva marca en el dominio.
@@ -31,7 +31,7 @@ public interface IMarcaService {
      *
      * @return La marca creada, si hubo éxito.
      */
-    public ResponseEntity<Marca> crearMarca(CreateMarcaDto marca);
+    public ResponseEntity<MarcaDto> crearMarca(CreateMarcaDto marca);
 
     /**
      * Actualiza una marca en el dominio.
@@ -41,7 +41,7 @@ public interface IMarcaService {
      *
      * @return La marca actualizada, si hubo éxito.
      */
-    public ResponseEntity<Marca> actualizarMarca(Long id, CreateMarcaDto marca);
+    public ResponseEntity<MarcaDto> actualizarMarca(Long id, CreateMarcaDto marca);
 
     /**
      * Elimina una marca del dominio.

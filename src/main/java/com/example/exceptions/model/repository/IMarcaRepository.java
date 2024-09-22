@@ -12,7 +12,7 @@ public interface IMarcaRepository extends JpaRepository<Marca, Long> {
     /**
      * Obtiene una marca por su ID.
      *
-     * @param id El identificador de la Marca.
+     * @param id     El identificador de la Marca.
      * @param estado El estado de la Marca a buscar.
      *
      * @return
@@ -23,11 +23,11 @@ public interface IMarcaRepository extends JpaRepository<Marca, Long> {
      * Obtiene una marca por su denominación.
      *
      * @param denominacion La denominación de la Marca.
-     * @param estado El estado de la Marca a buscar.
+     * @param estado       El estado de la Marca a buscar.
      *
      * @return
      */
-    Optional<List<Marca>> findByDenominacionAndEstado(String denominacion, EntityStatus estado);
+    Optional<Marca> findByDenominacionAndEstado(String denominacion, EntityStatus estado);
 
     /**
      * Obtiene una marca por su estado.
