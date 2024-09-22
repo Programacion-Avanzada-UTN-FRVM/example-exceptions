@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.exceptions.dto.CreateMarcaDto;
+import com.example.exceptions.dto.marca.CreateMarcaDto;
 import com.example.exceptions.model.Marca;
 
 public interface IMarcaService {
