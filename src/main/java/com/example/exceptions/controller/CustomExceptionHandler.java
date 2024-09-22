@@ -25,6 +25,29 @@ import java.util.Map;
  */
 public class CustomExceptionHandler {
 
+    /**
+     * Funcion helper que construye el body de response para un error de validacion
+     * (Bad Request 400)
+     * 
+     * @param status
+     * @param message
+     * @param request
+     * @return
+     */
+    private Map<String, Object> buildBadRequestResponseBody(HttpStatus status, List<String> message,
+            WebRequest request) {
+        // Crear el body original de Springboot, agregando una propiedad nueva donde
+        // esten los errores presentes.
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", status.value());
+        body.put("error", status.getReasonPhrase());
+        body.put("details", message);
+        body.put("path", request.getDescription(false).replace("uri=", ""));
+
+        return body;
+    }
+
     // Gestionar errores de validacion unicamente.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
@@ -37,12 +60,7 @@ public class CustomExceptionHandler {
 
         // Crear el body original de Springboot, agregando una propiedad nueva donde
         // esten los errores presentes.
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST.value());
-        body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
-        body.put("details", errors);
-        body.put("path", request.getDescription(false).replace("uri=", ""));
+        Map<String, Object> body = this.buildBadRequestResponseBody(HttpStatus.BAD_REQUEST, errors, request);
 
         // Retornar la respuesta.
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
