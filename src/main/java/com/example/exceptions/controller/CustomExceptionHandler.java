@@ -41,7 +41,7 @@ public class CustomExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.BAD_REQUEST.value());
         body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
-        body.put("errors", errors);
+        body.put("details", errors);
         body.put("path", request.getDescription(false).replace("uri=", ""));
 
         // Retornar la respuesta.
