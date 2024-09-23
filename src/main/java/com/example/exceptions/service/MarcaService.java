@@ -14,6 +14,7 @@ import com.example.exceptions.constant.EntityStatus;
 import com.example.exceptions.dto.IMarcaMapper;
 import com.example.exceptions.dto.marca.CreateMarcaDto;
 import com.example.exceptions.dto.marca.MarcaDto;
+import com.example.exceptions.dto.marca.UpdateMarcaDto;
 import com.example.exceptions.interfaces.IMarcaService;
 import com.example.exceptions.model.Marca;
 import com.example.exceptions.model.repository.IMarcaRepository;
@@ -37,7 +38,7 @@ public class MarcaService implements IMarcaService {
             dtos.add(this.mapper.marcaToMarcaDto(marca));
 
             // ALTERNATIVA: Eliminar IDs de los DTOs con el Mapper.
-            //dtos.add(this.mapper.marcaToMarcaDtoWithoutId(marca));
+            // dtos.add(this.mapper.marcaToMarcaDtoWithoutId(marca));
         });
 
         // Mappear las marcas a ResponseEntity.
@@ -85,13 +86,18 @@ public class MarcaService implements IMarcaService {
     }
 
     @Override
-    public ResponseEntity<MarcaDto> actualizarMarca(Long id, CreateMarcaDto marca) {
+    public ResponseEntity<MarcaDto> actualizarMarca(Long id, UpdateMarcaDto marca) {
         // Obtener la marca por su ID.
         Marca entity = this.mapper.marcaDtoToMarca(this.obtenerMarca(id).getBody());
 
+        if (marca.isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se han especificado campos a actualizar.");
+
         // Actualizar la marca.
-        entity.setDenominacion(marca.getDenominacion());
-        entity.setDescripcion(marca.getDescripcion());
+        if (marca.getDescripcion() != null)
+            entity.setDescripcion(marca.getDescripcion());
+        if (marca.getDenominacion() != null)
+            entity.setDenominacion(marca.getDenominacion());
 
         // Guardar los cambios en la base de datos.
         entity = this.repository.save(entity);

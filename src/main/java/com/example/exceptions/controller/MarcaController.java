@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.exceptions.dto.marca.CreateMarcaDto;
 import com.example.exceptions.dto.marca.MarcaDto;
+import com.example.exceptions.dto.marca.UpdateMarcaDto;
 import com.example.exceptions.interfaces.IMarcaService;
 
 import jakarta.validation.Valid;
@@ -41,7 +42,7 @@ public class MarcaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MarcaDto> updateMarca(@PathVariable Long id, @Valid @RequestBody CreateMarcaDto body) {
+    public ResponseEntity<MarcaDto> updateMarca(@PathVariable Long id, @Valid @RequestBody UpdateMarcaDto body) {
         return this.service.actualizarMarca(id, body);
     }
 

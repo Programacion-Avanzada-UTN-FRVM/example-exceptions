@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.example.exceptions.dto.marca.CreateMarcaDto;
 import com.example.exceptions.dto.marca.MarcaDto;
+import com.example.exceptions.dto.marca.UpdateMarcaDto;
 
 public interface IMarcaService {
     /**
@@ -41,7 +42,7 @@ public interface IMarcaService {
      *
      * @return La marca actualizada, si hubo éxito.
      */
-    public ResponseEntity<MarcaDto> actualizarMarca(Long id, CreateMarcaDto marca);
+    public ResponseEntity<MarcaDto> actualizarMarca(Long id, UpdateMarcaDto marca);
 
     /**
      * Elimina una marca del dominio.
